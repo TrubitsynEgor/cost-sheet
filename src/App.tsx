@@ -1,4 +1,5 @@
-import { CostItem } from "components/CostItem";
+import { CostList } from "components/CostList";
+import { Header } from "components/Header";
 
 
 
@@ -6,7 +7,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <CostItem />
+      <Header />
+      <CostList />
     </div>
   );
 }
