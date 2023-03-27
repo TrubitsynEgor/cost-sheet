@@ -61,7 +61,7 @@ export const NewCost = ({ onSaveCostData, formVisibleHandler }: NewCostProps) =>
       </div>
       <div className={styles.newCostBtnGroup}>
         <Button classes={styles.newCostBtn} type='submit'>Добавить расход</Button>
-        <Button onClick={formVisibleHandler} classes={styles.newCostBtn} type='submit'>Отмена</Button>
+        <Button onClick={formVisibleHandler} classes={styles.newCostBtn} type='button'>Отмена</Button>
       </div>
     </form>
   )
