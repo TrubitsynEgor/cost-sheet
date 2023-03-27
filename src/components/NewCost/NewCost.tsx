@@ -1,62 +1,66 @@
 import { Button } from 'components/UI/Button';
 import { Input } from 'components/UI/Input';
 import { ChangeEvent, useState } from 'react';
+import { ICost } from 'types';
 import styles from './NewCost.module.scss';
 
-interface NewCostProps { }
 
-export const NewCost = ({ }: NewCostProps) => {
+export interface ICostData extends ICost { }
+interface NewCostProps {
+  onSaveCostData: (data: ICostData) => void
+}
 
-  // const [name, setName] = useState('')
-  // const [price, setPrice] = useState('')
-  // const [date, setDate] = useState('')
+export const NewCost = ({ onSaveCostData }: NewCostProps) => {
 
-  const [value, setValue] = useState({
-    name: '',
-    price: '',
-    date: '',
-  })
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState('')
+  const [date, setDate] = useState('')
+
+
 
   const handleName = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue({
-      ...value,
-      name: e.target.value,
-    });
+    setName(e.target.value);
   }
   const handlePrice = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue({
-      ...value,
-      price: e.target.value,
-    });
+    setPrice(e.target.value);
   }
   const handleDate = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue({
-      ...value,
-      date: e.target.value,
-    });
+    setDate(e.target.value);
   }
 
-  const handleAny = () => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const costData = {
+      id: Math.random(),
+      name,
+      price,
+      date: new Date(date)
+    };
+    onSaveCostData(costData)
+    setName('')
+    setPrice('')
+    setDate('')
+
   }
 
   return (
-    <form action='#' className={styles.newCost} onSubmit={(e) => e.preventDefault()}>
+    <form action='#' className={styles.newCost} onSubmit={submitHandler}>
       <div className={styles.newCostInputGroup}>
-        <Input onChange={handleName} classes={styles.newCostInput} placeholder='Наименование' type='text' name='name'>
+        <Input onChange={handleName} value={name} classes={styles.newCostInput} placeholder='Наименование' type='text' name='name'>
           Наименование
         </Input>
-        <Input onChange={handlePrice} classes={styles.newCostInput} placeholder='Сумма' type='number' name='Sum'
+        <Input onChange={handlePrice} value={price} classes={styles.newCostInput} placeholder='Сумма' type='number' name='Sum'
           min='1' step='1'>
           Сумма
         </Input>
-        <Input onChange={handleDate} classes={styles.newCostInput} placeholder='Дата' type='date' name='Date'
+        <Input onChange={handleDate} value={date} classes={styles.newCostInput} placeholder='Дата' type='date' name='Date'
           min='2019-01-01' step='2022-12-31'>
           Дата
         </Input>
       </div>
       <div className={styles.newCostBtnGroup}>
-        <Button onClick={handleAny} classes={styles.newCostBtn} type='submit'>Добавить расход</Button>
-        <Button onClick={handleAny} classes={styles.newCostBtn} type='submit'>Отмена</Button>
+        <Button classes={styles.newCostBtn} type='submit'>Добавить расход</Button>
+        <Button classes={styles.newCostBtn} type='submit'>Отмена</Button>
       </div>
     </form>
   )

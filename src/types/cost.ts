@@ -1,6 +1,7 @@
 export interface ICost {
 	id: number
-	costDate: Date
-	title: string
-	price: number
+	name: string,
+	price: string,
+	date: Date
 }
+

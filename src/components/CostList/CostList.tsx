@@ -1,35 +1,27 @@
 import { CostItem } from 'components/CostItem';
+import { Select } from 'components/UI/Select';
+import { useState } from 'react';
 import { ICost } from 'types';
 import styles from './CostList.module.scss';
 
-interface CostListProps { }
+interface CostListProps {
+  cost: ICost[]
+}
 
-export const CostList = ({ }: CostListProps) => {
-  const cost: ICost[] = [
-    {
-      id: 1,
-      costDate: new Date(2023, 2, 26),
-      title: 'Холодильник',
-      price: 999.99,
-    },
-    {
-      id: 2,
-      costDate: new Date(2023, 2, 21),
-      title: 'Клавиатура',
-      price: 44.99,
-    },
-    {
-      id: 3,
-      costDate: new Date(2022, 11, 20),
-      title: 'Жесткий диск',
-      price: 153.99,
-    },
-  ]
+export const CostList = ({ cost }: CostListProps) => {
+
+  const [selectedYear, SetSelectedYear] = useState('2021')
+
+  const onChangeYear = (year: string) => {
+    SetSelectedYear(year)
+  }
+
 
   return (
     <div className={styles.costList}>
+      <Select onChangeYear={onChangeYear} year={selectedYear} />
       {cost.map(el =>
-        <CostItem key={el.id} costDate={el.costDate} title={el.title} price={el.price} />
+        <CostItem key={el.id} date={el.date} name={el.name} price={el.price} />
       )}
     </div>
   )

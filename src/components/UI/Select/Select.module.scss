@@ -1,0 +1,22 @@
+.select {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&Label {
+		color: var(--gray-50);
+	}
+
+	&Item {
+		padding: 6px 10px;
+		border-radius: 4px;
+		color: var(--gray-500);
+		font-size: 16px;
+		font-weight: 700;
+
+		&:focus {
+			outline: none;
+			border: 1px solid var(--main-color-hover);
+		}
+	}
+}

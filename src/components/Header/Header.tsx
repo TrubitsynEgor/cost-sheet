@@ -1,14 +1,20 @@
-import { NewCost } from 'components/NewCost';
+import { ICostData, NewCost } from 'components/NewCost';
 import { Button } from 'components/UI/Button';
+import { } from 'types';
 import styles from './Header.module.scss';
 
-interface HeaderProps { }
+interface HeaderProps {
+  onAddCostHandler: (newCost: ICostData) => void
+}
+export const Header = ({ onAddCostHandler }: HeaderProps) => {
 
-export const Header = ({ }: HeaderProps) => {
+  const saveDataHandler = (data: ICostData) => {
+    onAddCostHandler(data)
+  }
 
   return (
     <div className={styles.header}>
-      <NewCost />
+      <NewCost onSaveCostData={saveDataHandler} />
       <Button classes={styles.headerBtn} >Добавить расход:</Button>
     </div>
   )
