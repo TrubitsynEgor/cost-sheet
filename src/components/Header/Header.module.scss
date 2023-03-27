@@ -1,7 +1,7 @@
 .header {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	padding: 20px;
 	margin-top: 20px;
 	background-color: var(--gray-400);
@@ -10,20 +10,9 @@
 	box-shadow: 0 2px 7px rgba(#000000, 0.5);
 
 	&Btn {
-		font-weight: 700;
 		color: var(--gray-50);
 		background-color: var(--gray-200);
-		border: none;
-		cursor: pointer;
-		font-size: 14px;
-		border-radius: 4px;
 		padding: 12px 25px;
-		box-shadow: 0 2px 7px rgba(#000000, 0.5);
-		transition: all 0.3s ease 0s;
 
-		&:hover {
-			background-color: var(--gray-100);
-			box-shadow: 0 2px 7px rgba(grey, 0.5);
-		}
 	}
 }

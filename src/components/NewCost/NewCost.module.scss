@@ -1,0 +1,21 @@
+.newCost {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	&InputGroup {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+
+	}
+
+	&BtnGroup {
+		display: flex;
+		gap: 10px;
+	}
+
+	&Btn {
+		background-color: var(--gray-200);
+	}
+}

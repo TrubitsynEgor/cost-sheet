@@ -1,0 +1,21 @@
+.button {
+	font-weight: 700;
+	color: var(--gray-50);
+	border: none;
+	cursor: pointer;
+	font-size: 14px;
+	border-radius: 4px;
+	padding: 12px 25px;
+	box-shadow: 0 2px 7px rgba(#000000, 0.5);
+	transition: all 0.3s ease 0s;
+
+	&:hover {
+		background-color: var(--main-color-hover);
+		box-shadow: 0 2px 7px rgba(grey, 0.5);
+	}
+
+	&:focus {
+		outline: none;
+		border: 1px solid var(--main-color-hover);
+	}
+}
