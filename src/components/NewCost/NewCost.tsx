@@ -54,7 +54,7 @@ export const NewCost = ({ onSaveCostData }: NewCostProps) => {
           Сумма
         </Input>
         <Input onChange={handleDate} value={date} classes={styles.newCostInput} placeholder='Дата' type='date' name='Date'
-          min='2019-01-01' step='2022-12-31'>
+          min='2019-01-01' step='2022-12-31' required>
           Дата
         </Input>
       </div>
