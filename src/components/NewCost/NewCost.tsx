@@ -8,9 +8,10 @@ import styles from './NewCost.module.scss';
 export interface ICostData extends ICost { }
 interface NewCostProps {
   onSaveCostData: (data: ICostData) => void
+  formVisibleHandler: () => void
 }
 
-export const NewCost = ({ onSaveCostData }: NewCostProps) => {
+export const NewCost = ({ onSaveCostData, formVisibleHandler }: NewCostProps) => {
 
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
@@ -40,7 +41,7 @@ export const NewCost = ({ onSaveCostData }: NewCostProps) => {
     setName('')
     setPrice('')
     setDate('')
-
+    formVisibleHandler()
   }
 
   return (
@@ -60,7 +61,7 @@ export const NewCost = ({ onSaveCostData }: NewCostProps) => {
       </div>
       <div className={styles.newCostBtnGroup}>
         <Button classes={styles.newCostBtn} type='submit'>Добавить расход</Button>
-        <Button classes={styles.newCostBtn} type='submit'>Отмена</Button>
+        <Button onClick={formVisibleHandler} classes={styles.newCostBtn} type='submit'>Отмена</Button>
       </div>
     </form>
   )

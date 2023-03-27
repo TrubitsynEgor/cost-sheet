@@ -12,7 +12,7 @@ interface CostListProps {
 
 export const CostList = ({ cost }: CostListProps) => {
 
-  const [selectedYear, SetSelectedYear] = useState('all')
+  const [selectedYear, SetSelectedYear] = useState('Все')
 
   const onChangeYear = (year: string) => {
     SetSelectedYear(year)
@@ -23,7 +23,7 @@ export const CostList = ({ cost }: CostListProps) => {
     <div className={styles.costList}>
       <Select onChangeYear={onChangeYear} year={selectedYear} />
 
-      {selectedYear === 'all'
+      {selectedYear === 'Все'
         ? cost.map(el =>
           <CostItem key={el.id} date={el.date} name={el.name} price={el.price} />
         )
@@ -31,7 +31,7 @@ export const CostList = ({ cost }: CostListProps) => {
           <CostItem key={el.id} date={el.date} name={el.name} price={el.price} />
         )}
 
-      {(!filteredCost.length && selectedYear !== 'all') && <Empty />}
+      {(!filteredCost.length && selectedYear !== 'Все') && <Empty />}
     </div>
   )
 };

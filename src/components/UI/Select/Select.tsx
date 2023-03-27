@@ -16,7 +16,7 @@ export const Select = ({ year, onChangeYear }: SelectProps) => {
       <label className={styles.selectLabel} htmlFor="select">Выбор по году</label>
       <select className={styles.selectItem} onChange={handleYear} value={year} name="selectYear" id="select">
 
-        <option value="all">all</option>
+        <option value="Все">Все</option>
         <option value="2020">2020</option>
         <option value="2021">2021</option>
         <option value="2022">2022</option>

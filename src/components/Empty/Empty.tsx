@@ -1,8 +1,8 @@
 import styles from './Empty.module.scss';
 
-interface EmptyProps { }
 
-export const Empty = ({ }: EmptyProps) => {
+
+export const Empty = () => {
 
   return (
     <div className={styles.empty}>
