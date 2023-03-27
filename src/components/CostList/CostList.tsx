@@ -1,4 +1,5 @@
 import { CostItem } from 'components/CostItem';
+import { Empty } from 'components/Empty';
 import { Select } from 'components/UI/Select';
 import { useState } from 'react';
 import { ICost } from 'types';
@@ -11,7 +12,7 @@ interface CostListProps {
 
 export const CostList = ({ cost }: CostListProps) => {
 
-  const [selectedYear, SetSelectedYear] = useState('2023')
+  const [selectedYear, SetSelectedYear] = useState('all')
 
   const onChangeYear = (year: string) => {
     SetSelectedYear(year)
@@ -21,9 +22,16 @@ export const CostList = ({ cost }: CostListProps) => {
   return (
     <div className={styles.costList}>
       <Select onChangeYear={onChangeYear} year={selectedYear} />
-      {filteredCost.map(el =>
-        <CostItem key={el.id} date={el.date} name={el.name} price={el.price} />
-      )}
+
+      {selectedYear === 'all'
+        ? cost.map(el =>
+          <CostItem key={el.id} date={el.date} name={el.name} price={el.price} />
+        )
+        : filteredCost.map(el =>
+          <CostItem key={el.id} date={el.date} name={el.name} price={el.price} />
+        )}
+
+      {(!filteredCost.length && selectedYear !== 'all') && <Empty />}
     </div>
   )
 };
