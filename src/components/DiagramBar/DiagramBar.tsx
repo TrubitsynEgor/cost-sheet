@@ -1,12 +1,16 @@
+import { ICost } from 'types';
 import styles from './DiagramBar.module.scss';
 
 interface DiagramBarProps {
+  id: number
   name: string
   value: number
   maxValue: number
+  handleMonth: (id: number) => void
+
 }
 
-export const DiagramBar = ({ name, value, maxValue }: DiagramBarProps) => {
+export const DiagramBar = ({ id, name, value, maxValue, handleMonth }: DiagramBarProps) => {
 
   let barFillHight = '0%'
   if (maxValue > 0) {
@@ -14,7 +18,7 @@ export const DiagramBar = ({ name, value, maxValue }: DiagramBarProps) => {
   }
 
   return (
-    <div className={styles.diagramBar}>
+    <div onClick={() => handleMonth(id)} className={styles.diagramBar}>
       <div className={styles.diagramBarInner}>
         <div className={styles.diagramBarFill} style={{ height: barFillHight }}></div>
       </div>

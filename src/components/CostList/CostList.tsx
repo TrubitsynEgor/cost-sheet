@@ -14,27 +14,43 @@ interface CostListProps {
 export const CostList = ({ cost }: CostListProps) => {
 
   const [selectedYear, SetSelectedYear] = useState('2023')
+  const [selectedMont, setSelectedMont] = useState(-1)
 
   const onChangeYear = (year: string) => {
     SetSelectedYear(year)
   }
-  const filteredCost: ICost[] = cost.filter(el => el.date.getFullYear() === +selectedYear);
+  const handleMonth = (id: number) => {
+    setSelectedMont(() => id)
+  }
+  const handleAllMont = () => {
+    setSelectedMont(() => -1)
+  }
+
+
+  const filteredYearCost: ICost[] = cost.filter(el => el.date.getFullYear() === +selectedYear);
+  const filteredMontCost: ICost[] = filteredYearCost.filter(el => el.date.getMonth() + 1 === selectedMont)
 
   return (
     <div className={styles.costList}>
       <Select onChangeYear={onChangeYear} year={selectedYear} />
 
-      <CostDiagram cost={filteredCost} />
+      <CostDiagram cost={filteredYearCost} handleMonth={handleMonth} handleAllMont={handleAllMont} />
 
-      {selectedYear === 'Все'
-        ? cost.map(el =>
-          <CostItem key={el.id} date={el.date} name={el.name} price={el.price} />
-        )
-        : filteredCost.map(el =>
+
+      {selectedYear === 'Все' &&
+        cost.map(el =>
           <CostItem key={el.id} date={el.date} name={el.name} price={el.price} />
         )}
+      {selectedYear !== 'Все' && filteredMontCost.map(el =>
+        <CostItem key={el.id} date={el.date} name={el.name} price={el.price} />
+      )}
+      {selectedMont === -1 && filteredYearCost.map(el =>
+        <CostItem key={el.id} date={el.date} name={el.name} price={el.price} />
+      )
 
-      {(!filteredCost.length && selectedYear !== 'Все') && <Empty />}
+      }
+
+      {(!filteredYearCost.length && selectedYear !== 'Все') && <Empty />}
     </div>
   )
 };

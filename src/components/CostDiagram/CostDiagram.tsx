@@ -4,14 +4,17 @@ import styles from './CostDiagram.module.scss';
 
 interface CostDiagramProps {
   cost: ICost[]
+  handleMonth: (id: number) => void
+  handleAllMont: () => void
 }
 export interface IDiagramsDataSets {
   id: number
   name: string
   value: number
+
 }
 
-export const CostDiagram = ({ cost }: CostDiagramProps) => {
+export const CostDiagram = ({ cost, handleMonth, handleAllMont }: CostDiagramProps) => {
 
   const diagramsDataSets: IDiagramsDataSets[] = [
     { id: 1, name: 'Янв', value: 0 },
@@ -33,7 +36,7 @@ export const CostDiagram = ({ cost }: CostDiagramProps) => {
     diagramsDataSets[costMonth].value += +el.price
   }
 
-  return <Diagram dataSets={diagramsDataSets} />
+  return <Diagram dataSets={diagramsDataSets} handleMonth={handleMonth} handleAllMont={handleAllMont} />
 
 
 };
