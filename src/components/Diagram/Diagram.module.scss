@@ -1,1 +1,10 @@
-.diagram {}
+.diagram {
+	margin-top: 20px;
+	padding: 1rem;
+	border-radius: 12px;
+	background-color: var(--gray-200);
+	text-align: center;
+	display: flex;
+	justify-content: space-around;
+	height: 10rem;
+}

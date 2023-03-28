@@ -1,3 +1,4 @@
+import { CostDiagram } from 'components/CostDiagram';
 import { CostItem } from 'components/CostItem';
 import { Empty } from 'components/Empty';
 import { Select } from 'components/UI/Select';
@@ -12,16 +13,18 @@ interface CostListProps {
 
 export const CostList = ({ cost }: CostListProps) => {
 
-  const [selectedYear, SetSelectedYear] = useState('Все')
+  const [selectedYear, SetSelectedYear] = useState('2023')
 
   const onChangeYear = (year: string) => {
     SetSelectedYear(year)
   }
-  const filteredCost = cost.filter(el => el.date.getFullYear() === +selectedYear);
+  const filteredCost: ICost[] = cost.filter(el => el.date.getFullYear() === +selectedYear);
 
   return (
     <div className={styles.costList}>
       <Select onChangeYear={onChangeYear} year={selectedYear} />
+
+      <CostDiagram cost={filteredCost} />
 
       {selectedYear === 'Все'
         ? cost.map(el =>

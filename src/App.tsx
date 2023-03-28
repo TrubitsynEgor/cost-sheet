@@ -24,6 +24,18 @@ const INITIAL_COST: ICost[] = [
     name: 'Жесткий диск',
     price: '153.99',
   },
+  {
+    id: Math.random(),
+    date: new Date(2023, 0, 20),
+    name: 'Тренажер',
+    price: '413',
+  },
+  {
+    id: Math.random(),
+    date: new Date(2023, 1, 23),
+    name: 'Летняя резина',
+    price: '237',
+  },
 ]
 
 const App = () => {
